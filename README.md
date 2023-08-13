@@ -1,11 +1,13 @@
 # WebGameDev
 <br>
-This is a repository dedicated to creating games with pure HTML, CSS and JS with no frameworks and no libraries.
+This is a repository dedicated to creating games with pure HTML, CSS and JS with a few libraries.
 <br>
 
 This repository includes games like Doodle Jump, Tic-Tac-Toe and the famous Flappy Bird🐤
-
-## MIT LICENSE
+<br>
+It is intended to be beginner-friendly with tons of comments where possible.<br>
+Feel free to suggest updates❤
+## LICENSE
 
 ### MIT License
 
