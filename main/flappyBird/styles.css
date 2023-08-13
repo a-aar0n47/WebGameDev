@@ -30,9 +30,10 @@ body{
     right: 50px;
     top: 30px;
     transition: all 0.4s;
+    font-weight: bold;
 }
 #saveScorebtn:hover{
-    transform: scale(1.25);
+    transform: scale(1.15);
     color: black;
     box-shadow: 5px 5px 15px 15px rgba(0, 0, 0, 0.4);
 }

@@ -110,6 +110,7 @@ function update() {
 
     if (gameOver) {
         context.fillStyle = "red";
+        context.font = "45px Tahoma"
         context.fillText("GAME OVER", 9, 90);
     }
 }
@@ -170,5 +171,5 @@ function detectCollision(a, b) {
 const saveScore = () => {
     let scoreCount = document.getElementById("scoreCount")
     let scoreCountValue = scoreCount.value
-    scoreCount.innerHTML = `Previous score: ${score}`
+    scoreCount.innerHTML = `Flappy Bird Score: ${score}`
 }
