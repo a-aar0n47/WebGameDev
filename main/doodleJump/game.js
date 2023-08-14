@@ -13,6 +13,9 @@ let doodlerLeftImg;
 
 //game physics
 let velocityX = 0;
+let velocityY = 0;//doodler jump speed
+let initialVelocityY = -8;//starting velocity Y
+let gravity = 0.4
 
 //platforms
 let platformArray = [];
@@ -50,6 +53,7 @@ window.onload = function() {
 
     platformImg = new Image();
     platformImg.src = "/main/doodleJump/images/platform.png"
+    velocityY = initialVelocityY;
 
     placePlatforms();
     requestAnimationFrame(update);
@@ -69,12 +73,27 @@ const update = () => {
     else if((doodler.x + doodler.width) < 0) {
         doodler.x = canvasWidth
     }
-    context.drawImage(doodler.img, doodler.x, doodler.y, doodler.width, doodler.height);
+    
+    velocityY += gravity;
+    doodler.y += velocityY
 
+    context.drawImage(doodler.img, doodler.x, doodler.y, doodler.width, doodler.height);
     //drawing platforms
     for (let i = 0; i < platformArray.length; i++) {
         let platform = platformArray[i];
+        if (velocityY < 0 && doodler.y < canvasHeight*3/4) {
+            platform.y -= initialVelocityY;//slide platform down
+        }
+        if (detectCollision(doodler, platform) && velocityY >= 0) {
+            velocityY = initialVelocityY;//jumping when it hits the platform
+        }
         context.drawImage(platform.img, platform.x, platform.y, platform.width, platform.height);
+    }
+
+    //clear platforms and add new ones
+    while (platformArray.length > 0 && platformArray[0].y >= canvasHeight) {
+        platformArray.shift();//removes first element from the array
+        newPlatform()
     }
 }
 
@@ -104,6 +123,7 @@ const placePlatforms = () => {
 
     platformArray.push(platform);
 
+    /*
     platform = {
         img: platformImg,
         x: canvasWidth/2,
@@ -111,6 +131,40 @@ const placePlatforms = () => {
         width: platformWidth,
         height: platformHeight
     }
+    platformArray.push(platform);
+    */
+
+   //randomized platform generation
+   for (let i = 0; i < 6; i++) {
+    let randomX = Math.floor(Math.random() * (canvasWidth*(3/4)));//(0-1) * canvasWidth*(3/4)
+    let platform = {
+        img: platformImg,
+        x: randomX,
+        y: canvasHeight - 75 * i - 150,
+        width: platformWidth,
+        height: platformHeight
+    }
 
     platformArray.push(platform);
+   }
+}
+
+const newPlatform = () => {
+    let randomX = Math.floor(Math.random() * (canvasWidth*(3/4)));//(0-1) * canvasWidth*(3/4)
+    let platform = {
+        img: platformImg,
+        x: randomX,
+        y: -platformHeight,
+        width: platformWidth,
+        height: platformHeight
+    }
+
+    platformArray.push(platform);
+}
+
+const detectCollision = (a, b) => {
+    return a.x < b.x + b.width &&//a's top left corner doesn't reach be's top right corner
+            a.x + a.width > b.x &&//a's top right corner passes b's top left corner
+            a.y < b.y + b.height &&//a's top left corner doesn't reach b's bottom left corner
+            a.y + a.height > b.y;//a's bottom left corner passes b's top left corner
 }
