@@ -1,15 +1,58 @@
-# WebGameDev
+<br/>
+<p align="center">
+  <a href="https://github.com/a-aar0n47/WebGameDev">
+    <img src="https://mobirise.com/extensions/gamingamp/assets/images/logo2.png" alt="Logo" width="80" height="80">
+  </a>
+
+  <h1 align="center">WebGameDev</h1>
+
+  <p align="center">
+    Game development made easy, with JS.
+    <br/>
+    <br/>
+    <a href="https://github.com/a-aar0n47/WebGameDev"><strong>Explore the docs »</strong></a>
+    <br/>    .
+    <a href="https://github.com/a-aar0n47/WebGameDev/issues">Report Bug</a>
+    .
+    <a href="https://github.com/a-aar0n47/WebGameDev/issues">Request Feature</a>
+  </p>
+</p>
 <br>
-This is a repository dedicated to creating games with pure HTML, CSS and JS with a few libraries.
 <br>
 
-This repository includes games like Doodle Jump, Tic-Tac-Toe and the famous Flappy Bird🐤
-<br>
-It is intended to be beginner-friendly with tons of comments where possible.<br>
-Feel free to suggest updates❤
-## LICENSE
+## Built With
 
-### MIT License
+This repository was made with JavaScript, HTML, CSS and some Bootstrap. We tried to keep it simple and beginner-friendly.
+
+## Usage
+
+The games in this repository can be used to sharpen your knowledge of JavaScript by teaching you concepts like DOM Manipulation, Event Listeners, HTML5 Canvas Tag and Game Developement.
+<br>
+Feel free to clone this repository and use it for yourself, as well as learn👩🏻‍💻
+
+
+## Roadmap
+
+See the [open issues](https://github.com/a-aar0n47/WebGameDev/issues) for a list of proposed features (and known issues).
+
+## Contributing
+
+Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+* If you have suggestions for adding or removing projects, feel free to [open an issue](https://github.com/a-aar0n47/WebGameDev/issues/new) to discuss it, or directly create a pull request.
+* Please make sure you check your spelling and grammar.
+* Create individual PR for each suggestion.
+
+### Creating A Pull Request
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## License
+<br>
+MIT License
 
 Copyright (c) 2023 Aaron Musisi
 
@@ -30,9 +73,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
-### Translations:
-
-*You can use the files and content of this repository for your project or anything else as long as you state where you got them from😉
-
-#### Happy Coding😁
