@@ -11,6 +11,14 @@ let doodlerY = (canvasHeight * (7/8)) - doodlerHeight;
 let doodlerRightImg;
 let doodlerLeftImg;
 
+let doodler = {
+    img: null,
+    x: doodlerX,
+    y: doodlerY,
+    width: doodlerWidth,
+    height: doodlerHeight
+}
+
 //game physics
 let velocityX = 0;
 let velocityY = 0;//doodler jump speed
@@ -23,15 +31,9 @@ let platformWidth = 60;
 let platformHeight = 18;
 let platformImg;
 
-
-let doodler = {
-    img: null,
-    x: doodlerX,
-    y: doodlerY,
-    width: doodlerWidth,
-    height: doodlerHeight
-}
-
+let score = 0;
+let maxScore = 0;
+let gameOver = false;
 
 window.onload = function() {
     canvas = document.getElementById("canvas");
@@ -63,6 +65,9 @@ window.onload = function() {
 
 const update = () => {
     requestAnimationFrame(update)
+    if (gameOver) {//if gameOver == true, we stop updating canvas
+        return;
+    }
     context.clearRect(0, 0, canvas.width, canvas.height);
     //drawing doodler
     doodler.x += velocityX;
@@ -76,7 +81,9 @@ const update = () => {
     
     velocityY += gravity;
     doodler.y += velocityY
-
+    if (doodler.y > canvas.height) {
+        gameOver = true;
+    }
     context.drawImage(doodler.img, doodler.x, doodler.y, doodler.width, doodler.height);
     //drawing platforms
     for (let i = 0; i < platformArray.length; i++) {
@@ -95,6 +102,18 @@ const update = () => {
         platformArray.shift();//removes first element from the array
         newPlatform()
     }
+
+    //updating score and gameOver message
+    updateScore();
+    context.fillStyle = "black";
+    context.font = "16px Roboto";
+    context.fillText(score, 5, 20);
+
+    if (gameOver) {
+        context.fillStyle = "red";
+        context.font = "16px 'Poppins'"
+        context.fillText("Game Over: Press 'Space' to Restart!", canvasWidth/7, canvasHeight * (7/8));
+    }
 }
 
 
@@ -106,6 +125,22 @@ const moveDoodler = (e) => {
     else if(e.keyCode === 37 || e.keyCode === 65) {//move left using arrowLeft and "a"
         velocityX = -4;
         doodler.img = doodlerLeftImg;
+    }
+    else if(e.keyCode === 32 && gameOver) {
+        //reseting game when space bar is clicked and gameOver === true
+        doodler = {
+            img: doodlerRightImg,
+            x: doodlerX,
+            y: doodlerY,
+            width: doodlerWidth,
+            height: doodlerHeight
+        }
+        //resetting necessary variables and recalling necessary method to place platforms and restart game
+        velocityX = 0;
+        velocityY = initialVelocityY;
+        score = 0;
+        gameOver = false;
+        placePlatforms();
     }
 }
 
@@ -167,4 +202,18 @@ const detectCollision = (a, b) => {
             a.x + a.width > b.x &&//a's top right corner passes b's top left corner
             a.y < b.y + b.height &&//a's top left corner doesn't reach b's bottom left corner
             a.y + a.height > b.y;//a's bottom left corner passes b's top left corner
+}
+
+const updateScore = () => {
+    let points = Math.floor(45*Math.random())//(0-1) * 45 --> (0-45)
+    //making sure user doesn't gain any points unless progressing up on different platfoms
+    if (velocityY < 0){//negative going up
+        maxScore +=points;
+        if (score < maxScore) {
+            score = maxScore
+        }
+    }
+    else if (velocityY >= 0) {
+        maxScore -= points;
+    }
 }
