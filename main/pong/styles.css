@@ -1,0 +1,15 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow: none;
+}
+body{
+    text-align: center;
+    background: linear-gradient(to right, #3e3e3e, #333, #1b1b1b);
+}
+canvas{
+    background-color: black;
+    border-top: 5px solid whitesmoke;
+    border-bottom: 5px solid whitesmoke;
+}
