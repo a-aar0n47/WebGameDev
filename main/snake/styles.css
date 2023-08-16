@@ -8,4 +8,9 @@
 body{
     height: 100dvh;
     width: 100dvw;
+    background-color: dimgray;
+}
+h1{
+    font-family: "Roboto", "Poppins", sans-serif;
+    color: white;
 }
